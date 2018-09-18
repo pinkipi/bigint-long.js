@@ -33,10 +33,31 @@ Object.defineProperties(BigInt.prototype, {
 
 Object.assign(BigInt.prototype, {
 	add(val) { warn(); return BigInt(this) + BigInt(val) },
-	equals(val) { warn(); return BigInt(this) === BigInt(val) },
-	isZero() { warn(); return BigInt(this) === 0n },
+	and(val) { warn(); return BigInt(this) & BigInt(val) },
+	div(val) { warn(); return BigInt(this) / BigInt(val) },
+	eq(val) { warn(); return BigInt(this) === BigInt(val) },
 	eqz() { warn(); return BigInt(this) === 0n },
-	toNumber() { warn(); return Number(this) }
+	neg() { warn(); return -BigInt(this) },
+	not() { warn(); return ~BigInt(this) },
+	mul(val) { warn(); return BigInt(this) * BigInt(val) },
+	or(val) { warn(); return BigInt(this) | BigInt(val) },
+	shl(val) { warn(); return BigInt(this) << BigInt(val) },
+	shr(val) { warn(); return BigInt(this) >> BigInt(val) },
+	sub(val) { warn(); return BigInt(this) - BigInt(val) },
+	toInt() { warn(); return Number(this & 0xffffffffn) | 0 },
+	toNumber() { warn(); return Number(this) },
+	xor(val) { warn(); return BigInt(this) ^ BigInt(val) }
+})
+
+Object.assign(BigInt.prototype, {
+	divide: BigInt.prototype.div,
+	equals: BigInt.prototype.eq,
+	isZero: BigInt.prototype.eqz,
+	negate: BigInt.prototype.neg,
+	multiply: BigInt.prototype.mul,
+	shiftLeft: BigInt.prototype.shl,
+	shiftRight: BigInt.prototype.shr,
+	subtract: BigInt.prototype.sub
 })
 
 function BigIntLong() { throw Error('Long constructor is no longer supported, use BigInt type instead') }
